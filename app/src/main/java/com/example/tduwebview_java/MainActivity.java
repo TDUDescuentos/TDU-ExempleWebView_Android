@@ -29,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
-        webSettings.setBuiltInZoomControls(true);
+        webSettings.setBuiltInZoomControls(false);
+
         webSettings.setPluginState(WebSettings.PluginState.ON);
 
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // URL DE VISTA
-        mywebView.loadUrl("https://tdu.com.mx");
+        mywebView.loadUrl(getString(R.string.urlWebView));
 
         mywebView.setWebChromeClient(new WebChromeClient() {
             @Override
