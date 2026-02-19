@@ -5,12 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.webkit.ConsoleMessage;
 import android.webkit.GeolocationPermissions;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -80,4 +84,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        //MenuInflater inflater = getMenuInflater();
+        //inflater.inflate(R.menu.main_menu, menu);
+
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+
+        //return super.onCreateOptionsMenu(menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id== R.id.action_refresh) {
+            mywebView.loadUrl(getString(R.string.urlWebView));
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item); // Handle other items
+
+    }
 }
