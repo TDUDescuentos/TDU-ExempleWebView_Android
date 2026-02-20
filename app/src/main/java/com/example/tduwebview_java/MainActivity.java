@@ -35,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
         webSettings.setDomStorageEnabled(true);
         webSettings.setBuiltInZoomControls(false);
 
+        //webSettings.setRenderPriority(WebSettings.RenderPriority.HIGH);
+        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+
+
         webSettings.setPluginState(WebSettings.PluginState.ON);
 
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
