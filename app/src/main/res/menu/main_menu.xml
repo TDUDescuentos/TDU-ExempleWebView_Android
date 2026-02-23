@@ -9,4 +9,12 @@
 
         app:showAsAction="ifRoom"/>
 
+    <item android:id="@+id/action_back"
+        android:title="Refresh"
+        android:iconTint="#FFBF00"
+        android:icon="@drawable/baseline_arrow_back_24"
+
+        app:showAsAction="ifRoom"/>
+
+
 </menu>

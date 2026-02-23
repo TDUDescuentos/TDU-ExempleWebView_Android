@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -111,7 +112,33 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        if (id== R.id.action_back) {
+            if (mywebView.canGoBack()) {
+                mywebView.goBack();
+            } else {
+                finish();
+            }
+            return true;
+        }
+
         return super.onOptionsItemSelected(item); // Handle other items
 
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_BACK:
+                    if (mywebView.canGoBack()) {
+                        mywebView.goBack();
+                    } else {
+                        finish();
+                    }
+                    return true;
+            }
+
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
