@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#aeebd7"
+
     tools:context=".MainActivity">
 
     <WebView
@@ -17,6 +18,7 @@
         android:layout_marginBottom="48dp"
         android:focusable="true"
         android:focusableInTouchMode="true"
+
 
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

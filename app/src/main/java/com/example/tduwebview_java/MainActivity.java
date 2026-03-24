@@ -3,6 +3,7 @@ package com.example.tduwebview_java;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -10,9 +11,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.webkit.ConsoleMessage;
+import android.webkit.CookieManager;
 import android.webkit.GeolocationPermissions;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
+import android.webkit.WebStorage;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
@@ -30,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         mywebView=(WebView) findViewById(R.id.webview);
         mywebView.setWebViewClient(new WebViewClient());
 
+
+
         WebSettings webSettings=mywebView.getSettings();
 
         webSettings.setJavaScriptEnabled(true);
@@ -37,7 +42,10 @@ public class MainActivity extends AppCompatActivity {
         webSettings.setDatabaseEnabled(true); // Needed for some HTML5 geo apps
         webSettings.setGeolocationEnabled(true);
 
-        webSettings.setBuiltInZoomControls(false);
+        webSettings.setBuiltInZoomControls(true);
+
+        webSettings.setUseWideViewPort(true);
+        webSettings.setLoadWithOverviewMode(true);
 
         //webSettings.setRenderPriority(WebSettings.RenderPriority.HIGH);
 
@@ -47,7 +55,17 @@ public class MainActivity extends AppCompatActivity {
 
         //webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
 
+        mywebView.clearCache(true);
+        mywebView.clearFormData();
+        mywebView.clearHistory();
 
+        CookieManager cookieManager = CookieManager.getInstance();
+        cookieManager.removeAllCookies(null);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            cookieManager.flush();
+        }
+
+        WebStorage.getInstance().deleteAllData();
 
         mywebView.setWebViewClient(new mywebClient(){
             public void onGeolocationPermissionsShowPrompt(
